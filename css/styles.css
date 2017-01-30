@@ -1,0 +1,57 @@
+#wrapper {
+    height: 100%;
+    max-height:100%;
+    max-width:100%;
+    overflow: hidden;
+}
+.sidenav-logo {
+    background-color: #49075e;
+}
+.primary-color {
+    color:#49075e;
+}
+.accent-color {
+    color:#ff3f80;
+}
+.sidenav-logo img {
+    width: 80%;
+    margin-left: 10%;
+    padding-top:8px;
+    padding-bottom:8px;
+    height: auto;
+}
+.sidenav-menu {
+    padding-left: 0;
+    margin-top: 0;
+}
+
+.sidenav-menu li {
+
+    width: 100%;
+}
+.sidenav-menu li a {
+    display: block;
+}
+
+.active {
+    color: red;
+}
+.positive {
+    color: #008000
+}
+.subheader-filter md-input-container {
+
+    margin-bottom: 4px;
+}
+.subheader-filter md-input-container .md-errors-spacer {
+display: none;
+}
+.departments h5 {
+    margin-bottom: 0;
+}
+p.schedule {
+    line-height: 1em;
+    margin-bottom: 4px;
+    margin-top: 4px;
+}
+

@@ -1,0 +1,39 @@
+<md-content flex="100" layout="row" layout-wrap>
+<div class="subheader-filter" flex="100" layout="row" layout-align="center">
+    <md-input-container>
+        <label>Filter library name</label>
+        <input name="libName" ng-model="vm.filter.libName"/>
+    </md-input-container>
+    <md-button ng-click="vm.openNewLibrary()" class="md-no-ink md-primary">
+        New Library
+    </md-button>
+</div>
+<div ng-repeat="lib in vm.libraries | filter:{'name':vm.filter.libName}" flex-xs="100" flex-gt-xs="50" flex-gt-lg="33" layout="column">
+    <md-card>
+        <md-card-title>
+            <md-card-title-text>
+                <span class="md-headline">{{lib.name}} </span>
+                <span class="md-subhead"> {{lib.abbr}}</span>
+
+            </md-card-title-text>
+
+        </md-card-title>
+        <md-card-content>
+            <div ng-repeat="dep in lib.departments" layout="row" layout-no-wrap>
+                <p class="schedule" flex="100">
+                    {{dep.name}} -
+                    <span class="active" ng-if="!dep.times.currently_open">Closed now</span>
+                    <span class="positive" ng-if="dep.times.currently_open">Opened now</span>
+                </p>
+
+            </div>
+
+        </md-card-content>
+        <md-card-actions layout="row" layout-align="end center">
+            <md-button class="md-no-ink md-primary" href="{{lib.url}}">Website</md-button>
+            <md-button id="libdetail-{{lib.lid}}" class="md-no-ink md-primary" ng-click="vm.openLibraryDetails(lib)">Library details</md-button>
+        </md-card-actions>
+    </md-card>
+</div>
+
+</md-content>

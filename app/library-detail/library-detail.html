@@ -1,0 +1,78 @@
+<div layout="row" layout-wrap>
+    <div flex="50" flex-xs="100">
+        <md-card>
+            <md-card-title>
+                <md-card-title-text>
+                    <span class="md-headline">{{vm.library.name}} </span>
+                    <span class="md-subhead"> {{vm.library.abbr}}</span>
+
+                </md-card-title-text>
+                <md-card-title-media>
+                    <div class="md-media-sm card-media">
+
+                    </div>
+                </md-card-title-media>
+
+
+            </md-card-title>
+            <div class="md-padding">{{vm.library.fn}}</div>
+
+
+        </md-card>
+        <md-card>
+            <md-card-title>
+                <md-card-title-text>
+                    <span class="md-headline">Computers available</span>
+                </md-card-title-text>
+            </md-card-title>
+            <md-card-content>
+                <div ng-repeat="comp in vm.computers| filter:{'library':vm.library.name}" class="departments">
+                    <div ng-repeat="(levelKey,levelValue) in comp.availability">
+                        <p>{{levelKey}} -
+                        {{levelValue.Available}}/{{levelValue.Occupied+levelValue.Available}}</p>
+
+                    </div>
+                </div>
+            </md-card-content>
+
+
+        </md-card>
+
+
+    </div>
+
+    <div flex="50" flex-xs="100">
+        <md-card>
+            <md-card-title>
+                <md-card-title-text>
+                    <span class="md-headline">Departments </span>
+                </md-card-title-text>
+            </md-card-title>
+            <md-card-content>
+                <div ng-repeat="department in vm.library.departments" class="departments">
+                    <h5>{{department.name}}</h5>
+                    <div ng-repeat="day in department.weeks">
+                        <div layout="row">
+                            <p flex="50">Day</p>
+                            <p flex="50">Hours</p>
+
+                        </div>
+                        <div ng-repeat="(key,val) in day" layout="row">
+                            <p flex="50" class="schedule">{{key}}</p>
+                            <p flex="50" class="schedule">
+                                <span ng-if="val.times.status!='closed'&&val.times.status!='open'">{{val.times.status}}</span>
+                                <span ng-if="val.times.status=='closed'">{{val.times.status}}</span>
+                                <span ng-if="val.times.status=='open'" ng-repeat="time in val.times.hours">{{time.from}} - {{time.to}}<br></span></p>
+
+                          </div>
+                    </div>
+                </div>
+            </md-card-content>
+
+
+        </md-card>
+
+
+    </div>
+
+</div>

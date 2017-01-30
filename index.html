@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <title>UQ Library test</title>
+    <script src="bower_components/angular/angular.min.js"></script>
+    <script src="bower_components/angular-route/angular-route.min.js"></script>
+    <script src="bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
+    <script src="bower_components/angular-material/angular-material.min.js"></script>
+    <script src="bower_components/angular-messages/angular-messages.min.js"></script>
+    <script src="bower_components/angular-animate/angular-animate.min.js"></script>
+    <script src="bower_components/angular-aria/angular-aria.min.js"></script>
+
+    <link rel="stylesheet" href="bower_components/angular-material/angular-material.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+
+</head>
+<body ng-app="app">
+    <div layout="row" id="wrapper" ng-controller="NavCtrl as nav" ng-cloak>
+        <md-sidenav
+                    md-component-id="left"
+                    md-is-locked-open="$mdMedia('gt-md')"
+                    md-whiteframe="4"
+                    class="md-sidenav-left">
+            <md-content flex="100">
+                <div class="sidenav-logo">
+                    <img src="img/uq-logo-white.svg">
+                </div>
+                <ul class="sidenav-menu">
+                    <li ng-click="nav.toggleMenu()">
+                        <a class="md-button" ui-sref="libraries" ui-sref-active="accent-color">Libraries</a>
+                    </li>
+
+                    <li ng-click="nav.toggleMenu()">
+                        <a id="library-new" class="md-button" ui-sref="library-new" ui-sref-active="accent-color">New library</a>
+                    </li>
+                    <li ng-click="nav.toggleMenu()">
+                    <a class="md-button" ui-sref="computer-availability" ui-sref-active="accent-color">Computer availability</a>
+                   </li>
+                </ul>
+            </md-content>
+        </md-sidenav>
+        <div flex="100" layout="column">
+            <md-toolbar ng-controller="TitleCtrl as title">
+                <div class="md-toolbar-tools">
+                    <md-button hide-gt-md class="md-icon-button" aria-label="Settings" ng-click="nav.toggleMenu()">
+                        <md-icon md-svg-icon="img/icons/menu.svg" id="menu-icon"></md-icon>
+                    </md-button>
+
+                    <span>{{title.title()}}</span>
+
+                    <span flex></span>
+
+                </div>
+            </md-toolbar>
+            <md-content md-scroll-y layout="column" flex>
+                <ui-view></ui-view>
+            </md-content>
+        </div>
+
+    </div>
+</body>
+    <script src="app/app.module.js"></script>
+    <script src="app/app.config.js"></script>
+    <script src="app/app.routes.js"></script>
+    <script src="app/NavCtrl.js"></script>
+    <script src="app/TitleCtrl.js"></script>
+
+    <script src="app/services/library.service.js"></script>
+    <script src="app/services/title.service.js"></script>
+    <script src="app/libraries/libraries.js"></script>
+    <script src="app/library-detail/library-detail.js"></script>
+    <script src="app/library-new/library-new.js"></script>
+    <script src="app/computer-availability/computer-availability.js"></script>
+</html>

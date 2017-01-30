@@ -1,0 +1,24 @@
+<md-whiteframe class="md-whiteframe-4dp" layout="row">
+    <md-toolbar layout-padding class="md-accent" layout="row">
+        <div layout="column" flex layout-align="center start">
+            <div flex ng-bind-html="vm.topBarMessage.value"></div>
+        </div>
+        <div layout="column" flex layout-align="center end" class="md-body-2">
+            <div flex>{{vm.clock | amTimezone:'Australia/Brisbane' | amDateFormat:'D MMM YYYY, h:mm:ss a'}} in QLD
+            </div>
+        </div>
+    </md-toolbar>
+</md-whiteframe>
+
+
+<div class="dashboard-container overlay-10" layout="column">
+
+
+    <md-card flex>
+
+        <div ui-view></div>
+
+    </md-card>
+
+
+</div>

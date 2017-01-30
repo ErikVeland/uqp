@@ -1,0 +1,123 @@
+<md-whiteframe class="md-whiteframe-2dp" layout-padding layout-margin layout="column">
+
+    <form class="searchBoxColor" name="vm.filters.form">
+        <div class="md-title">Search</div>
+        <div layout="row" layout-xs="column">
+            <div layout="row" layout-xs="column" class="md-inline-form">
+
+                <md-input-container flex>
+                    <label>Library Name</label>
+                    <input type="text" ng-model='vm.query.filters.name' aria-label="library name search"
+                           ng-model-options="vm.query.tableOptions.options">
+                    <md-tooltip>Search by library name</md-tooltip>
+                </md-input-container>
+
+            </div>
+
+            <div layout="row" layout-xs="column">
+
+                <md-input-container layout="column">
+                    <md-button class="md-primary md-raised" ng-click="vm.getLibraries()"
+                               aria-label="refresg">
+                        Refresh
+                    </md-button>
+                </md-input-container>
+                <md-input-container layout="column">
+                    <md-button class="md-accent md-raised" ng-click="vm.resetForm('vm.filters.form')"
+                               aria-label="reset">
+                        Reset
+                    </md-button>
+                </md-input-container>
+            </div>
+        </div>
+    </form>
+
+
+    <md-table-container>
+        <div layout="row" layout-align="start start" layout-margin="0">
+            <md-input-container layout="column">
+                <md-button class="md-accent md-raised" ng-click="vm.goToCreateLibraryPage()"
+                           aria-label="create a library">
+                    <md-icon md-font-icon="fa fa-plus"></md-icon>
+                    New Library
+                </md-button>
+            </md-input-container>
+        </div>
+
+        <table md-table class="md-primary md-data-table " md-progress="vm.tableDataLoaded">
+
+
+            <thead md-head>
+
+            <tr md-row>
+                <th md-column></th>
+                <th md-column>Name</th>
+                <th md-column>ID</th>
+                <th md-column>URL</th>
+                <th md-column>Currently open</th>
+                <th md-column>Computer availabilities</th>
+            </tr>
+
+            </thead>
+
+            <tbody md-body>
+            <tr ng-repeat-start="library in vm.librariesList | filter:vm.query.filters"
+                ng-style="vm.rowColor(library.color,0.2)">
+                <td md-cell>
+                    <md-button class="md-fab md-mini" ng-class="['md-warn','md-hue-2']" ng-show="row.expanded"
+                               ng-click="row.expanded = false" aria-label="see department">
+                        <md-icon md-font-icon="zmdi zmdi-minus"></md-icon>
+                    </md-button>
+                    <md-button class="md-fab md-mini" ng-class="['md-accent','md-hue-2']" ng-show="!row.expanded" aria-label="hide department"
+                               ng-click="row.expanded = true">
+                        <md-icon md-font-icon="zmdi zmdi-plus"></md-icon>
+                    </md-button>
+                </td>
+                <td md-cell>{{library.name}}</td>
+                <td md-cell>{{library.lid}}</td>
+                <td md-cell><a target="_blank" href="{{library.url}}">Go to page</a></td>
+                <td md-cell>{{(library.times.currently_open)? 'Yes':'No'}}</td>
+                <td md-cell>
+                    <md-button aria-label="Open actions menu" class="md-icon-button"
+                               ng-click="vm.showLibraryComputerAvailabilities($event,library.name)">
+                        <md-icon md-font-icon="zmdi zmdi-laptop-chromebook"></md-icon>
+                    </md-button>
+                </td>
+            </tr>
+
+            <tr md-row ng-repeat-end ng-show="row.expanded">
+                <td md-cell colspan="2">
+                    <table md-table class="md-primary md-data-table">
+
+                        <thead md-head>
+
+                        <tr md-row class="subTableHeader">
+                            <th md-column>Department</th>
+                            <th md-column>Opening Hours</th>
+                        </tr>
+
+                        </thead>
+                        <tbody md-body>
+                        <tr md-row ng-repeat="department in library.departments"f>
+                            <td md-cell>{{department.name}}</td>
+                            <td md-cell>{{department.rendered}}</td>
+
+                        </tr>
+                        </tbody>
+                    </table>
+                </td>
+            </tr>
+            </tbody>
+
+        </table>
+
+    </md-table-container>
+
+    <md-table-pagination md-label="{rowsPerPage: 'Rows:'}"
+                         md-limit="vm.query.tableOptions.limit"
+                         md-options="vm.query.tableOptions.rowsPerPage"
+                         md-page="vm.query.tableOptions.page"
+                         md-total="{{vm.totalRecords}}"></md-table-pagination>
+
+</md-whiteframe>
+

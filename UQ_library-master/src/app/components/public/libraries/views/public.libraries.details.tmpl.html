@@ -1,0 +1,104 @@
+<md-whiteframe class="md-whiteframe-2dp" flex layout-margin>
+
+
+    <form name="vm.createLibraryForm" id="vm.createLibraryForm" layout="column" novalidate>
+
+        <div layout="column" layout-margin>
+
+            <md-whiteframe class="md-whiteframe-2dp" layout-margin layout-padding>
+
+                <div flex layout="row" layout-xs="column" class="margin-bottom-10">
+                    <div flex="10" flex-xs="100" class="md-title">Library ID:</div>
+
+                    <div flex aria-label="library id">
+                        <span>{{vm.library.lid}}</span>
+                    </div>
+                </div>
+
+                <div flex layout="row" layout-xs="column" class="margin-bottom-10">
+                    <div flex="10" felx-xs="100" class="md-title">Name:</div>
+
+                    <div flex aria-label="library name">
+                        <span>{{vm.library.name}}</span>
+                    </div>
+
+                </div>
+
+                <div flex layout="row" layout-xs="column" class="margin-bottom-10">
+                    <div flex="10" felx-xs="100" class="md-title">Abbreviation:</div>
+
+                    <div flex aria-label="library name abbreviation">
+                        <span>{{vm.library.abbr}}</span>
+                    </div>
+                </div>
+                <div flex layout="row" layout-xs="column" class="margin-bottom-10">
+                    <div flex="10" felx-xs="100" class="md-title">URL:</div>
+
+                    <div flex aria-label="library url">
+                        <span><a class="md-subhead" link="{{vm.library.url}}">{{vm.library.url}}</a></span>
+                    </div>
+                </div>
+
+                <div flex layout="row" layout-xs="column" class="margin-bottom-10">
+                    <div flex="10" felx-xs="100" class="md-title">Color:</div>
+
+                    <div aria-label="library color" flex="30" flex-gt-md="15" flex="30" ng-style="vm.generateColor(vm.library.color,1)">
+                        {{vm.library.color}}
+                    </div>
+                </div>
+
+
+            </md-whiteframe>
+
+
+            <md-whiteframe class="md-whiteframe-2dp margin-left-30" layout-margin layout-padding>
+                <h2>Departments</h2>
+                <md-divider></md-divider>
+                <div class="padding-left-20" ng-repeat="department in vm.library.departments">
+
+                    <div flex layout="row" layout-xs="column" class="margin-bottom-10">
+                        <div flex="15" felx-xs="100" class="md-title">Department ID:</div>
+
+                        <div flex aria-label="department id">
+                            <span>{{department.lid}}</span>
+                        </div>
+                    </div>
+
+
+                    <div flex layout="row" layout-xs="column" class="margin-bottom-10">
+                        <div flex="15" felx-xs="100" class="md-title">Name:</div>
+
+                        <div flex aria-label="department name">
+                            <span>{{department.name}}</span>
+                        </div>
+                    </div>
+
+                    <div flex layout="row" layout-xs="column" class="margin-bottom-10">
+                        <div flex="15" felx-xs="100" class="md-title">Opening times:</div>
+
+                        <div flex aria-label="department opening hours">
+                            <span>{{department.rendered}}</span>
+                        </div>
+                    </div>
+                    <md-divider></md-divider>
+                    <md-divider></md-divider>
+                    <md-divider></md-divider>
+
+                </div>
+            </md-whiteframe>
+            <md-whiteframe class="md-whiteframe-2dp margin-left-30" layout-margin layout-padding>
+                <h2>Computer Availabilities</h2>
+                <md-divider></md-divider>
+
+                    <div ng-include="'app/components/public/libraries/views/computer-availability.content.tmpl.html'" flex layout="column" class="margin-bottom-10">
+
+                    </div>
+
+
+            </md-whiteframe>
+        </div>
+
+
+    </form>
+
+</md-whiteframe>

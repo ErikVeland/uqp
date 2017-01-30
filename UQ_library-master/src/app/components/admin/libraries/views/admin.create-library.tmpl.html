@@ -1,0 +1,129 @@
+<md-whiteframe class="md-whiteframe-2dp" flex layout-margin>
+
+
+    <form name="vm.createLibraryForm" id="vm.createLibraryForm" layout="column" novalidate>
+
+        <div layout="column" layout-margin>
+
+            <md-whiteframe class="md-whiteframe-2dp" layout-margin layout-padding>
+                <div class="md-title">Library ID</div>
+
+                <div flex layout-margin layout="row">
+                    <md-input-container flex="30" flex-xs="100" >
+                        <input only-integer  name="libraryId" type="text"
+                               ng-model='vm.library.id' required aria-label="Library id"/>
+
+                        <div ng-messages="vm.createLibraryForm.libraryId.$error" ng-show="true">
+                            <div ng-message="required">
+                                This field is required.
+                            </div>
+
+                        </div>
+                    </md-input-container>
+                </div>
+
+                <div class="md-title">Library Short Name</div>
+
+                <div flex layout-margin layout="row">
+                    <md-input-container flex="30" flex-xs="100">
+                        <input ng-maxlength="5" ng-minlength="5" name="libraryShortName" type="text"
+                                  ng-model='vm.library.shortName' required aria-label="library Short Name"/>
+
+                        <div ng-messages="vm.createLibraryForm.libraryShortName.$error" ng-show="true">
+                            <div ng-message="required">
+                                This field is required.
+                            </div>
+                            <div ng-message="minlength">
+                                Please enter only 5 characters.
+                            </div>
+                            <div ng-message="maxlength">
+                                Please enter only 5 characters.
+                            </div>
+                        </div>
+                    </md-input-container>
+                </div>
+
+                <div class="md-title">Library Name</div>
+
+                <div flex layout-margin layout="row">
+                    <md-input-container  flex="30" flex-xs="100">
+                        <input ng-maxlength="50" name="libraryName" type="text" ng-model="vm.library.name" required aria-label="library Name"/>
+
+                        <div ng-messages="vm.createLibraryForm.libraryName.$error" ng-show="true">
+                            <div ng-message="required">
+                                This field is required.
+                            </div>
+                            <div ng-message="maxlength">
+                                Max field length is 50 characters.
+                            </div>
+                        </div>
+                    </md-input-container>
+                </div>
+
+                <div class="md-title">Campus</div>
+
+                <div flex layout-margin layout="row">
+                    <md-input-container  flex="20" flex-xs="100">
+                        <label>Select a Campus</label>
+                        <md-select ng-model='vm.library.campus' name="campus" required aria-label="Select a campus">
+                            <md-option ng-repeat="campus in vm.campusList" ng-value='campus'>
+                                {{campus}}
+                            </md-option>
+                        </md-select>
+                        <div ng-messages="vm.createLibraryForm.campus.$error" ng-show="true">
+                            <div ng-message="required">
+                                This field is required.
+                            </div>
+                        </div>
+                    </md-input-container>
+                </div>
+            </md-whiteframe>
+
+            <div layout="row" layout-xs="column" layout-margin>
+
+
+                <md-whiteframe class="md-whiteframe-2dp" flex layout="column" layout-align="center center"
+                               layout-xs="column"
+                               layout-margin layout-padding>
+                    <div layout="row" layout-xs="column" layout-align-xs="center center">
+                        <md-input-container>
+                            <md-button ng-disabled="vm.createLibraryForm.$invalid" class="md-primary  md-raised" aria-label="create library"
+                                       ng-click="vm.createLibrary()">
+                                <md-icon md-font-icon="fa fa-plus"></md-icon>
+                                Save
+                                <md-progress-circular class="md-accent in-button-progress"
+                                                      ng-if="vm.showCircularProgressForSubmission" md-mode="indeterminate"
+                                                      md-diameter="20"></md-progress-circular>
+                            </md-button>
+                        </md-input-container>
+                        <md-input-container>
+                            <md-button class="md-warn  md-raised" aria-label="Cancel"
+                                       ng-click="vm.cancel()">
+                                <md-icon md-font-icon="fa fa-times"></md-icon>
+                                Cancel
+                            </md-button>
+                        </md-input-container>
+                        <md-input-container layout="column">
+                            <md-button class="md-accent md-raised" ng-click="vm.resetForm('createLibraryForm')"
+                                       aria-label="reset">
+                                <md-icon md-font-icon="fa fa-repeat"></md-icon>
+                                Reset
+                            </md-button>
+                        </md-input-container>
+                    </div>
+                    <div style="color:#F4511E;text-align: center" class="md-caption">*All required fields must be completed.
+                    </div>
+                </md-whiteframe>
+
+
+            </div>
+
+
+
+
+        </div>
+
+
+    </form>
+
+</md-whiteframe>

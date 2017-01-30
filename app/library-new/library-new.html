@@ -1,0 +1,57 @@
+<md-content layout-padding>
+    <form name="newForm">
+        <div layout="row" layout-wrap>
+            <md-input-container flex="50" flex-xs="100">
+                <label>Library ID</label>
+                <input type="number" required name="id" ng-model="vm.formData.id">
+                <div ng-messages="newForm.id.$error">
+                    <div ng-message="required">This is required.</div>
+                </div>
+            </md-input-container>
+            <md-input-container flex="50" flex-xs="100">
+                <label>Library short name</label>
+                <input maxlength="5" required name="shortName" ng-model="vm.formData.shortName">
+                <div ng-messages="newForm.shortName.$error">
+                    <div ng-message="required">This is required.</div>
+                </div>
+            </md-input-container>
+
+        </div>
+        <div layout="row" layout-wrap>
+            <md-input-container flex="50" flex-xs="100">
+                <label>Library name</label>
+                <input required  name="fullName" ng-model="vm.formData.fullName"
+                       maxlength="50"/>
+                <div ng-messages="newForm.fullName.$error">
+                    <div ng-messages="newForm.fullName.$error">
+                        <div ng-message="required">This is required.</div>
+                    </div>
+                </div>
+            </md-input-container>
+
+            <md-input-container flex="50" flex-xs="100">
+                <label>Campus</label>
+                <md-select ng-model="vm.formData.campus" required>
+                    <md-option ng-repeat="c in vm.campuses" value="{{c}}">
+                        {{c}}
+                    </md-option>
+                </md-select>
+                <div class="errors" ng-messages="newForm.campus.$error">
+                    <div ng-message="required">Required</div>
+                </div>
+            </md-input-container>
+
+        </div>
+
+
+
+        <div layout="row" layout-align="center">
+            <md-button class="md-raised md-warn" href="#/">Cancel</md-button>
+            <md-button class="md-raised md-primary" type="submit" ng-click="vm.submitForm()" ng-disabled="!newForm.$valid">Submit</md-button>
+        </div>
+
+
+    </form>
+</md-content>
+
+</div>
